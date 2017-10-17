@@ -1,421 +1,344 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable"  content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <link rel="dns-prefetch" href="//t11.baidu.com">
+    <!--SEO-->
 
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1261768793&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+    
+    
 </head>
 
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+    <header class="main-header">
+    <div class="main-header-box">
+        <a class="branding" href="/" title="">
+            <img src="/img/header_logo.png" alt="Snippet 博客主题">
+        </a>
+        <h2 class="text-hide">Snippet主题</h2>
+        <img src="/img/header_logo.png" alt="Snippet 博客主题" class="hide">
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-rest_api_1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/10/13/rest_api_1/" class="article-date">
-  <time datetime="2017-10-13T03:19:49.000Z" itemprop="datePublished">2017-10-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/13/rest_api_1/">RESTful API</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="RESRful-API-设计与实战（一）"><a href="#RESRful-API-设计与实战（一）" class="headerlink" title="RESRful API 设计与实战（一）"></a>RESRful API 设计与实战（一）</h2><h3 id="一-Richardson成熟度模型"><a href="#一-Richardson成熟度模型" class="headerlink" title="一 Richardson成熟度模型"></a>一 <a href="https://martinfowler.com/articles/richardsonMaturityModel.html" target="_blank" rel="external">Richardson成熟度模型</a></h3><ul>
-<li><strong>level 0-The Swamp of POX</strong><br>  仅使用HTTP作为传输协议，本质上是RPC的一种具体实现方式。RPC的思想是把本地函数映射为API，主题是动作，表示我要做什么。</li>
-<li><strong>level 1 - Resources</strong><br>  引入资源的概念。每个资源都对应的标识和表达。</li>
-<li><strong>level 2 - HTTP Verbs</strong><br>  Web服务使用不同的http方法来进行不同的操作，并且使用http状态码表达不同的结果。如使用GET方法来获取资源，POST方法创建资源。</li>
-<li><strong>level 3 - Hypermedia Controls</strong><br>  Web服务使用HATEOAS。超媒体控制的一个显著优势是服务端在不影响客户端的前提下更改URI scheme。另外一个好处是，它可以帮助客户端开发者探索协议。</li>
-</ul>
-<hr>
-<p>###二 RESTful API 设计实践 (level 2)</p>
-<hr>
-<h4 id="2-1-URI"><a href="#2-1-URI" class="headerlink" title="2.1 URI"></a>2.1 URI</h4><p>RESTful APIs 是关于资源的。URI的应该是可预测的，分层的结构。<br>可预测表示它们是一致的；分层表示资源具有关联关系。  </p>
-<p>通常，应该使用小写的复数形式来标识，snake_case格式。（有证据证明 <a href="http://www.cs.kent.edu/~jmaletic/papers/ICPC2010-CamelCaseUnderScoreClouds.pdf" target="_blank" rel="external">snake_case比camelCase更易读</a>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">POST http://www.example.com/customers/33245/orders</div><div class="line">POST http://www.example.com/customers/33245/orders/8769/lineitems</div></pre></td></tr></table></figure>
-<p><strong>是否存在不适合使用复数的形式呢？</strong><br>当然存在的，比如系统中的单例资源configutation。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET|PUT|DELETE http://www.example.com/configuration</div></pre></td></tr></table></figure>
-<p><strong>CURD不能表达的资源如何处理？</strong>  </p>
-<ol>
-<li>当操作不需要参数时，可以将操作处理成某个资源的属性。比如activate操作可以处理成一个activated的boolean类型的属性，然后用PATCH方法更新它。  </li>
-<li>将操作处理为子资源。  </li>
-</ol>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/28570307" target="_blank" rel="external">WEB开发中，使用JSON-RPC好，还是RESTful API好？</a></p>
-<p>login和logout其实只是对session资源的创建和删除； </p>
-<p>search本身就是个资源，使用POST创建，如果不需持久化，可以直接在Response中返回结果，如果需要（如翻页、长期缓存等），直接保存搜索结果并303跳转到资源地址就行了； </p>
-<p>id多到连url都写不下的请求，应该创建task，用GET返回task状态甚至执行进度；</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">反例：POST /accounts/close</div><div class="line">	 POST /closeAccount            </div><div class="line">正例：POST /accounts/4402278/close</div><div class="line">	 POST /payments/sale/36C38912MN9658832/refund</div></pre></td></tr></table></figure>
-<hr>
-<h4 id="2-2-Method"><a href="#2-2-Method" class="headerlink" title="2.2 Method"></a>2.2 Method</h4><ul>
-<li>GET            查询资源</li>
-<li>POST          创建资源</li>
-<li>PUT           全量更新资源</li>
-<li>PATCH     局部更新资源</li>
-<li>DELETE  删除资源</li>
-</ul>
-<p><a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Safe_methods" target="_blank" rel="external">安全性</a>：任意多次对同一资源操作，都不会导致资源状态的变化。<br><a href="https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning" target="_blank" rel="external">幂等性</a>：任意多次对同一资源操作，对资源的改变是一样的。  </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">method</th>
-<th style="text-align:center">操作</th>
-<th style="text-align:center">安全性</th>
-<th style="text-align:center">幂等性</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">GET</td>
-<td style="text-align:center">查询资源</td>
-<td style="text-align:center">是</td>
-<td style="text-align:center">是</td>
-</tr>
-<tr>
-<td style="text-align:center">POST</td>
-<td style="text-align:center">创建资源</td>
-<td style="text-align:center">否</td>
-<td style="text-align:center">否</td>
-</tr>
-<tr>
-<td style="text-align:center">PUT</td>
-<td style="text-align:center">全量更新资源</td>
-<td style="text-align:center">否</td>
-<td style="text-align:center">是</td>
-</tr>
-<tr>
-<td style="text-align:center">PATCH</td>
-<td style="text-align:center">局部更新资源</td>
-<td style="text-align:center">否</td>
-<td style="text-align:center">否</td>
-</tr>
-<tr>
-<td style="text-align:center">DELETE</td>
-<td style="text-align:center">删除资源</td>
-<td style="text-align:center">否</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">反例：POST /accounts/4402278/delete</div><div class="line">正例：DELETE /accounts/4402278</div></pre></td></tr></table></figure>
-<p><strong>DELETE方法是幂等的吗？</strong><br>考虑请求两次的结果对比:  </p>
-<ol>
-<li>资源无法删除，这种情况就是幂等的;  </li>
-<li>资源可以删除，第二次请求应该返回404，这种情况就不是幂等的。</li>
-</ol>
-<hr>
-<h4 id="2-3-Version"><a href="#2-3-Version" class="headerlink" title="2.3 Version"></a>2.3 Version</h4><p>通常有三种解决方案：  </p>
-<ol>
-<li>在URI中加入版本号。(建议采用)  </li>
-<li>Accept Header: Accept:v1  </li>
-<li>自定义Header  </li>
-</ol>
-<hr>
-<h4 id="2-4-Status-Code"><a href="#2-4-Status-Code" class="headerlink" title="2.4 Status Code"></a>2.4 <a href="http://www.restapitutorial.com/httpstatuscodes.html" target="_blank" rel="external">Status Code</a></h4><table>
-<thead>
-<tr>
-<th style="text-align:center">status</th>
-<th style="text-align:center">method</th>
-<th style="text-align:center">desc</th>
-<th style="text-align:center">解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">200</td>
-<td style="text-align:center">all(GET POST …)</td>
-<td style="text-align:center">OK</td>
-<td style="text-align:center">请求成功并返回实体</td>
-</tr>
-<tr>
-<td style="text-align:center">201</td>
-<td style="text-align:center">POST PUT</td>
-<td style="text-align:center">Created</td>
-<td style="text-align:center">请求成功执行，返回创建的资源(URI)</td>
-</tr>
-<tr>
-<td style="text-align:center">400</td>
-<td style="text-align:center">all</td>
-<td style="text-align:center">Bad Request</td>
-<td style="text-align:center">客户端错误，一般是参数错误</td>
-</tr>
-<tr>
-<td style="text-align:center">401</td>
-<td style="text-align:center">all</td>
-<td style="text-align:center">Unauthorized</td>
-<td style="text-align:center">请求需要用户授权</td>
-</tr>
-<tr>
-<td style="text-align:center">403</td>
-<td style="text-align:center">all</td>
-<td style="text-align:center">Forbidden</td>
-<td style="text-align:center">认证通过，但用户没有该权限。</td>
-</tr>
-<tr>
-<td style="text-align:center">404</td>
-<td style="text-align:center">all</td>
-<td style="text-align:center">Not Found</td>
-<td style="text-align:center">资源不存在</td>
-</tr>
-<tr>
-<td style="text-align:center">500</td>
-<td style="text-align:center">all</td>
-<td style="text-align:center">Internal Server Error</td>
-<td style="text-align:center">服务器遇到异常，无法完成请求。</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">反例：GET /accounts/123456 (资源不存在)  </div><div class="line">     响应: HTTP status 200 (ok) with a body saying it&apos;s not found</div><div class="line">正例：GET /accounts/123456 (资源不存在)   </div><div class="line">     响应: HTTP status 404 (not found)</div></pre></td></tr></table></figure>
-<hr>
-<h4 id="2-5-Wrapped-Response"><a href="#2-5-Wrapped-Response" class="headerlink" title="2.5 Wrapped Response"></a>2.5 Wrapped Response</h4><p>通常，应该是这样的，响应包含如下属性：  </p>
-<ul>
-<li>code   整数型的HTTP响应吗  </li>
-<li>status  “success”，“fail”和“error”。fail表示5xx，error表示4xx，success代表1xx、2xx，3xx</li>
-<li>message  fail和error时才有的消息，表示错误提示。  </li>
-<li>data  响应体。  </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;code&quot;: 200,</div><div class="line">  &quot;status&quot;: &quot;success&quot;,</div><div class="line">  &quot;data&quot;: &#123;</div><div class="line">    &quot;lacksTOS&quot;: false,</div><div class="line">    &quot;invalidCredentials&quot;: false,</div><div class="line">    &quot;authToken&quot;: &quot;4ee683baa2a3332c3c86026d&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>另外一种方式是只在错误的时候提供这样的响应。</p>
-<hr>
-<h4 id="2-6-Date-Time-处理"><a href="#2-6-Date-Time-处理" class="headerlink" title="2.6 Date/Time 处理"></a>2.6 Date/Time 处理</h4><p>推荐采用字符串形式，如ISO 8061。<a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank" rel="external">Unix Timestamp</a>的可读性较差，不推荐采用。</p>
-<hr>
-<h3 id="三-HATEOAS-level-3"><a href="#三-HATEOAS-level-3" class="headerlink" title="三 HATEOAS(level 3)"></a>三 HATEOAS(level 3)</h3><p>超媒体(Hypermedia)是一组可链接的资源，程序可以通过这些连接操作资源。<br>HATEOAS的核心是<strong>链接(links)</strong>。</p>
-<p>通常采用HATEOAS，是在响应体中加入“links”。”links”属性会包含以下三个子属性：  </p>
-<ul>
-<li>ref 链接说表示的关系</li>
-<li>herf 链接的资源URI</li>
-<li>method 访问URI的方法</li>
-</ul>
-<p>常用ref属性：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">ref属性</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">self</td>
-<td style="text-align:center">资源本身</td>
-</tr>
-<tr>
-<td style="text-align:center">item</td>
-<td style="text-align:center">资源集合中的单个资源</td>
-</tr>
-<tr>
-<td style="text-align:center">first next prev last</td>
-<td style="text-align:center">第一页 …</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;id&quot;: &quot;36C38912MN9658832&quot;,</div><div class="line">  &quot;create_time&quot;: &quot;2017-02-19T22:01:53Z&quot;,</div><div class="line">  &quot;update_time&quot;: &quot;2017-02-19T22:01:55Z&quot;,</div><div class="line">  &quot;state&quot;: &quot;completed&quot;,</div><div class="line">  &quot;amount&quot;: &#123;</div><div class="line">    &quot;total&quot;: &quot;7.47&quot;,</div><div class="line">    &quot;currency&quot;: &quot;USD&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;protection_eligibility&quot;: &quot;ELIGIBLE&quot;,</div><div class="line">  &quot;protection_eligibility_type&quot;: </div><div class="line">  &quot;transaction_fee&quot;: &#123;</div><div class="line">    &quot;value&quot;: &quot;1.75&quot;,</div><div class="line">    &quot;currency&quot;: &quot;USD&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;links&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;href&quot;: &quot;https://api.paypal.com/v1/payments/sale/36C32&quot;,</div><div class="line">      &quot;rel&quot;: &quot;self&quot;,</div><div class="line">      &quot;method&quot;: &quot;GET&quot;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      &quot;href&quot;: &quot;https://api.paypal.com/v1/payments/sale/36C3/refund&quot;,</div><div class="line">      &quot;rel&quot;: &quot;refund&quot;,</div><div class="line">      &quot;method&quot;: &quot;POST&quot;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      &quot;href&quot;: &quot;https://api.paypal.com/v1/payments/payment/5YK9&quot;,</div><div class="line">      &quot;rel&quot;: &quot;parent_payment&quot;,</div><div class="line">      &quot;method&quot;: &quot;GET&quot;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<p><a href="http://stateless.co/hal_specification.html" target="_blank" rel="external">HAL(Hypertext Application Language)</a>是HATEOAS的一种实现。<br>HAL的资源包含三部分：  </p>
-<ul>
-<li>Links (to URIs)  </li>
-<li>Embedded Resources   (i.e. other resources contained within them)  </li>
-<li>State (your bog standard JSON or XML data)  </li>
-</ul>
-<p><img src="/Users/nate/Documents/blog/info-model.png" alt="HAL Resources"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 201 Created</div><div class="line">Content-Type: application/hal+json</div><div class="line">Location: http://example.org/api/user/matthew</div><div class="line"></div><div class="line">&#123;</div><div class="line">    &quot;_links&quot;: &#123;</div><div class="line">        &quot;self&quot;: &#123;</div><div class="line">            &quot;href&quot;: &quot;http://example.org/api/user/matthew&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    &quot;id&quot;: &quot;matthew&quot;,</div><div class="line">    &quot;name&quot;: &quot;Matthew Weier O&apos;Phinney&quot;,</div><div class="line">    &quot;_embedded&quot;: &#123;</div><div class="line">        &quot;contacts&quot;: [</div><div class="line">            &#123;</div><div class="line">                &quot;_links&quot;: &#123;</div><div class="line">                    &quot;self&quot;: &#123;</div><div class="line">                        &quot;href&quot;: &quot;http://example.org/api/user/mac_nibblet&quot;</div><div class="line">                    &#125;</div><div class="line">                &#125;,</div><div class="line">                &quot;id&quot;: &quot;mac_nibblet&quot;,</div><div class="line">                &quot;name&quot;: &quot;Antoine Hedgecock&quot;</div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                &quot;_links&quot;: &#123;</div><div class="line">                    &quot;self&quot;: &#123;</div><div class="line">                        &quot;href&quot;: &quot;http://example.org/api/user/spiffyjr&quot;</div><div class="line">                    &#125;</div><div class="line">                &#125;,</div><div class="line">                &quot;id&quot;: &quot;spiffyjr&quot;,</div><div class="line">                &quot;name&quot;: &quot;Kyle Spraggs&quot;</div><div class="line">            &#125;</div><div class="line">        ],</div><div class="line">        &quot;website&quot;: &#123;</div><div class="line">            &quot;_links&quot;: &#123;</div><div class="line">                &quot;self&quot;: &#123;</div><div class="line">                    &quot;href&quot;: &quot;http://example.org/api/locations/mwop&quot;</div><div class="line">                &#125;</div><div class="line">            &#125;,</div><div class="line">            &quot;id&quot;: &quot;mwop&quot;,</div><div class="line">            &quot;url&quot;: &quot;http://www.mwop.net&quot;</div><div class="line">        &#125;,</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>通过<a href="http://haltalk.herokuapp.com/explorer/browser.html/" target="_blank" rel="external">The HAL Browser</a> 可以探索HAL。  </p>
-<hr>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://michael007java.farbox.com/post/category/2014-10-01" target="_blank" rel="external">RESTful API设计最佳实践</a><br><a href="http://imweb.io/topic/5707561f06f2400432c139a5" target="_blank" rel="external">RESTful API 规范 v1.0</a><br><a href="http://marcelo-cure.blogspot.com/2016/09/rest-anti-patterns.html?utm_source=wanqu.co&amp;utm_campaign=Wanqu+Daily&amp;utm_medium=social" target="_blank" rel="external">REST anti-patterns</a><br><a href="http://www.restapitutorial.com/" target="_blank" rel="external">Learn REST: A RESTful Tutorial</a><br><a href="https://developer.paypal.com/docs/api/" target="_blank" rel="external">PayPal APIs</a><br><a href="https://apigility.org/documentation/api-primer/halprimer" target="_blank" rel="external">hal primer</a><br><a href="http://stateless.co/hal_specification.html" target="_blank" rel="external">HAL</a><br><a href="https://www.ibm.com/developerworks/cn/java/j-lo-SpringHATEOAS/" target="_blank" rel="external">使用 Spring HATEOAS 开发 REST 服务</a>  </p>
-
-      
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class=""><a href="/">Home</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/前端/">前端</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/后端/">后端</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/工具/">工具</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/资源/">资源</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/13/rest_api_1/" data-id="cj8pbsvuf0001blpyz3go0s66" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/29/hello-world/" class="article-date">
-  <time datetime="2017-09-29T07:14:06.000Z" itemprop="datePublished">2017-09-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/29/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/29/hello-world/" data-id="cj8pbsvub0000blpyusmw6y3t" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2017/10/13/rest_api_1/">RESTful API</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/29/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 John Doe<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
 </nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content ">
+                    <div class="carousel">
+    <img src="/img/head-img.jpg">
+</div>
+
+
+
+<article class="post">
     
+        <div class="post-media">
+            <a href="javascript:">
+                <img class="img-ajax" src="./img/loading.gif"  data-src="/Users/nate/Documents/blog/info-model.png"   alt="RESTful API"> 
+            </a>
+        </div>
+    
+    <div class="post-content">
+        <div class="post-head home-post-head">
+            <h1 class="post-title">
+                <a href="/2017/10/13/rest_api_1/">RESTful API</a>
+            </h1>
+            <div class="post-meta">  &bull;
+                <time class="post-date" datetime="" title="">
+                    2017年10月13日
+                </time>
+            </div>
+        </div>
+        <p class="brief">
+            RESRful API 设计与实战（一）一 Richardson成熟度模型
+level 0-The Swamp of POX  仅使用HTTP作为传输协议，本质上是RPC的一种具体实现方式。RPC的思想是把本地函数映射为API，主题是...
+        </p> 
+    </div>
+    <footer class="post-footer clearfix">
+        <div class="pull-left tag-list">
+            <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>无</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            null
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/10/13</span>
+    </span>
+</div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        </div>
+
+        <div class="post-permalink"> 
+            <a href="/2017/10/13/rest_api_1/" class="btn btn-default">阅读全文</a>
+        </div>
+    </footer>
+</article>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+<article class="post">
+    
+    <div class="post-content">
+        <div class="post-head home-post-head">
+            <h1 class="post-title">
+                <a href="/2017/09/29/hello-world/">Hello World</a>
+            </h1>
+            <div class="post-meta">  &bull;
+                <time class="post-date" datetime="" title="">
+                    2017年09月29日
+                </time>
+            </div>
+        </div>
+        <p class="brief">
+            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using ...
+        </p> 
+    </div>
+    <footer class="post-footer clearfix">
+        <div class="pull-left tag-list">
+            <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>无</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            null
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/09/29</span>
+    </span>
+</div>
+
+        </div>
+
+        <div class="post-permalink"> 
+            <a href="/2017/09/29/hello-world/" class="btn btn-default">阅读全文</a>
+        </div>
+    </footer>
+</article>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>主题Snippet v1.1.0版本已经上线！欢迎更新~ <br/>
+主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
+<hr/>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request。<br/>支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/shenliyang" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:snippet@91h5.cc" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="微博" target="_blank">
+			    	<i class="weibo fa fa-weibo"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="QQ群" target="_blank">
+			    	<i class="users fa fa-users"></i>
+			    </a>
+            
+	            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+			    	<i class="feed fa fa-feed"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+
+        
+        
+    <div class="widget">
+      <h3 class="title">Archives</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">October 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">September 2017</i></a><span class="archive-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+
+        
+        
+    <div class="widget">
+        <h3 class="title">Friends</h3>
+        <div class="content friends-link">
+        
+            <a href="http://www.shenliyang.com" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017 
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/app.js?rev=@@hash"></script>
+
 </body>
 </html>
