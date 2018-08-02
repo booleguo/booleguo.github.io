@@ -1,0 +1,416 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable"  content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <link rel="dns-prefetch" href="//t11.baidu.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>MySQL事务隔离级别 | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1261768793&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+    
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header">
+    <div class="main-header-box">
+        <a class="branding" href="/" title="">
+            <img src="/img/header_logo.png" alt="Snippet 博客主题">
+        </a>
+        <h2 class="text-hide">Snippet主题</h2>
+        <img src="/img/header_logo.png" alt="Snippet 博客主题" class="hide">
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class=""><a href="/">Home</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/前端/">前端</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/后端/">后端</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/工具/">工具</a></li>
+                        
+                            <li role="presentation" class=""><a href="/categories/资源/">资源</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="MySQL事务隔离级别">
+            
+            MySQL事务隔离级别
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>无</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            null
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/08/02</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body">
+        <h2 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h2><p>MySQL的事务支持不是绑定在MySQL服务器本身，而是与存储引擎相关。  </p>
+<ol>
+<li>MyISAM：不支持事务，用于只读程序提高性能  </li>
+<li>InnoDB：支持ACID事务、行级锁、并发  </li>
+<li>Berkeley DB：支持事务</li>
+</ol>
+<h3 id="一-事务的四种隔离级别"><a href="#一-事务的四种隔离级别" class="headerlink" title="一 事务的四种隔离级别"></a>一 事务的四种隔离级别</h3><table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未提交读（Read uncommitted）</td>
+<td>可能</td>
+<td>可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>已提交读（Read committed）</td>
+<td>不可能</td>
+<td>可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>可重复读（Repeatable read）</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>可串行化（Serializable ）</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>不可能</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><p>未提交读(Read Uncommitted)  </p>
+<ul>
+<li>允许脏读，也就是可能读取到其他会话中未提交事务修改的数据</li>
+</ul>
+</li>
+<li><p><strong>提交读(Read Committed)</strong></p>
+<ul>
+<li>只能读取到已经提交的数据。Oracle等多数数据库默认都是该级别   </li>
+<li>同一个事务中，同一 SELECT 可能返回不同结果</li>
+<li>在RC级别中，数据的读取都是不加锁的，但是数据的写入、修改和删除是需要加锁的</li>
+</ul>
+</li>
+<li><strong>可重复读(Repeated Read)</strong>   <ul>
+<li>InnoDB默认级别。在SQL标准中，该隔离级别消除了不可重复读，但是还存在幻象读</li>
+</ul>
+</li>
+<li>串行读(Serializable)  <ul>
+<li>完全串行化的读，每次读都需要获得表级共享锁，读写相互都会阻塞</li>
+</ul>
+</li>
+</ol>
+<p><strong>不可重复读</strong>  </p>
+<blockquote>
+<p>A non-repeatable read occurs, when during the course of a transaction, a row is retrieved twice and the values within the row differ between reads.  </p>
+</blockquote>
+<p>不可重复读，是指在数据库访问中，一个事务范围内两个相同的查询返回了不同数据。</p>
+<p><strong>幻读</strong>  </p>
+<blockquote>
+<p>A phantom read occurs when, in the course of a transaction, new rows are added by another transaction to the records being read. </p>
+<p>The so-called phantom problem occurs within a transaction when the same query produces different sets of rows at different times. For example, if a SELECT is executed twice, but returns a row the second time that was not returned the first time, the row is a “phantom” row.   </p>
+</blockquote>
+<p>幻读问题是指一个事务的不同时刻的相同查询返回了不同的的结果集。例如:一个 select 语句执行了两次，但是在第二次返回了第一次没有返回的行,那么这些行就是“phantom” row。  </p>
+<h3 id="二-事务相关SQL"><a href="#二-事务相关SQL" class="headerlink" title="二 事务相关SQL"></a>二 事务相关SQL</h3><ol>
+<li><p>事务的控制  </p>
+<ul>
+<li>开启事务<br>BEGIN; 或者 START TRANSACTION;</li>
+<li>提交事务<br>COMMIT;</li>
+<li>回滚事务<br>ROLLBACK;</li>
+</ul>
+</li>
+<li><p>事务的隔离级别  </p>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">--语法</span></div><div class="line"><span class="comment">-- SET [GLOBAL | SESSION] TRANSACTION ISOLATION LEVEL &lt;isolation-level&gt; </span></div><div class="line"><span class="comment">--  isolation-level 可选值：  </span></div><div class="line"><span class="comment">-- READ UNCOMMITTED | READ COMMITTED | REPEATABLE READ | SERIALIZABLE</span></div><div class="line"></div><div class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> <span class="keyword">TRANSACTION</span> <span class="keyword">ISOLATION</span> <span class="keyword">LEVEL</span> <span class="keyword">READ</span> COMMITTED;</div><div class="line"></div><div class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> <span class="keyword">TRANSACTION</span> <span class="keyword">ISOLATION</span> <span class="keyword">LEVEL</span> REPEATABLE <span class="keyword">READ</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 查看事务隔离级别</span></div><div class="line"><span class="keyword">select</span> @@global.tx_isolation, @@session.tx_isolation, @@tx_isolation;</div></pre></td></tr></table></figure>
+<p>不带SESSION、GLOBAL的SET命令只对下一个事务有效<br>SET SESSION为当前会话设置隔离模式<br>SET GLOBAL为以后新建的所有MYSQL连接设置隔离模式（当前连接不包括在内）  </p>
+<h3 id="三-一致性读"><a href="#三-一致性读" class="headerlink" title="三 一致性读"></a>三 一致性读</h3><p>一致性读，又称为快照读。使用的是MVCC机制读取undo中的已经提交的数据。所以它的读取是非阻塞的。  </p>
+<blockquote>
+<p>A consistent read means that InnoDB uses multi-versioning to present to a query a snapshot of the database at a point in time. The query sees the changes made by transactions that committed before that point of time, and no changes made by later or uncommitted transactions. The exception to this rule is that the query sees the changes made by earlier statements within the same transaction.<br>Suppose that you are running in the default REPEATABLE READ isolation level. When you issue a consistent read (that is, an ordinary SELECT statement), InnoDB gives your transaction a timepoint according to which your query sees the database. If another transaction deletes a row and commits after your timepoint was assigned, you do not see the row as having been deleted. Inserts and updates are treated similarly. </p>
+</blockquote>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-consistent-read.html" target="_blank" rel="external">MYSQL官方资料</a></p>
+<h4 id="RC下的一致性读"><a href="#RC下的一致性读" class="headerlink" title="RC下的一致性读"></a>RC下的一致性读</h4><blockquote>
+<p>With READ COMMITTED isolation level, each consistent read within a transaction sets and reads its own fresh snapshot.<br>事务中每一次读取都是以当前的时间点作为判断是否提交的时间点</p>
+</blockquote>
+<h4 id="RR下的一致性读"><a href="#RR下的一致性读" class="headerlink" title="RR下的一致性读"></a>RR下的一致性读</h4><blockquote>
+<p>Suppose that you are running in the default REPEATABLE READ isolation level. When you issue a consistent read (that is, an ordinary SELECT statement), InnoDB gives your transaction a timepoint according to which your query sees the database. If another transaction deletes a row and commits after your timepoint was assigned, you do not see the row as having been deleted. Inserts and updates are treated similarly. </p>
+</blockquote>
+<p><strong>RR隔离级别下的一致性读，不是以begin开始的时间点作为snapshot建立时间点，而是以第一条select语句的时间点作为snapshot建立的时间点。</strong><br><strong>RR隔离级别下的一致性读，是以第一条select语句的执行点作为snapshot建立的时间点的，即使是不同表的select语句。</strong><br><strong>本事务中进行修改的数据，即使没有提交，在本事务中的后面也可以读取到。update 语句因为进行的是“当前读”，所以它可以修改成功。</strong>  </p>
+<p>一致性读是指普通的select语句，不带 for update, in share mode 等等子句。使用的是undo中的提交的数据，不需要使用锁(MDL除外)。<br>而当前读，是指update, delete, select for update, select in share mode等等语句进行的读，它们读取的是数据库中的最新的数据，并且会锁住读取的行和gap(RR隔离时)。如果不能获得锁，则会一直等待，直到获得或者超时。<br>RC隔离级别的当前读没有gap lock，RC的update语句进行的是“半一致性读”，和RR的update语句的当前读不一样。</p>
+<h3 id="四-Autocommit"><a href="#四-Autocommit" class="headerlink" title="四 Autocommit"></a>四 Autocommit</h3><p>Normally, MySQL runs in autocommit mode. Each query you run is effectively isolated in a transaction. You can think of it as adding START TRANSACTION and COMMIT to each of your queries for you. </p>
+<p>The autocommit variable is local to a single session, so changing the mode will affect only queries run from your session and only for as long as your session is connected.</p>
+<p>If you turn autocommit off, you will not need to call START TRANSACTION to start a transaction. It is very important, though, that you remember to call COMMIT periodically to commit any changes you have made to the database.</p>
+<h3 id="五-参考"><a href="#五-参考" class="headerlink" title="五 参考"></a>五 参考</h3><p><a href="https://tech.meituan.com/innodb-lock.html?utm_source=tool.lu" target="_blank" rel="external">Innodb中的事务隔离级别和锁的关系</a><br><a href="https://www.cnblogs.com/digdeep/p/4947694.html" target="_blank" rel="external">MySQL 一致性读 深入研究</a></p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明: 商业转载请联系作者获得授权,非商业转载请注明出处 © Snippet
+            
+        </div>
+        <div>
+            
+                License: <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">
+知识共享署名-非商业性使用-禁止演绎 3.0 未本地化版本许可协议（CC BY-NC-ND 3.0）
+</a>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2017/10/17/rest_api_1/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1966422"></script>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>主题Snippet v1.1.0版本已经上线！欢迎更新~ <br/>
+主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
+<hr/>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request。<br/>支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/shenliyang" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:snippet@91h5.cc" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+			    	<i class="feed fa fa-feed"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+
+        
+        
+    <div class="widget">
+      <h3 class="title">Archives</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/"><i class="fa" aria-hidden="true">August 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">October 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">September 2017</i></a><span class="archive-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+
+        
+        
+    <div class="widget">
+        <h3 class="title">Friends</h3>
+        <div class="content friends-link">
+        
+            <a href="http://blog.didispace.com" class="fa" target="_blank">程序猿DD</a>
+        
+            <a href="http://xujin.org" class="fa" target="_blank">许进|沉思录</a>
+        
+            <a href="http://edisonxu.org" class="fa" target="_blank">EdisonXu</a>
+        
+            <a href="http://skaka.me" class="fa" target="_blank">skaka的博客</a>
+        
+            <a href="http://tech.lede.com" class="fa" target="_blank">网易乐得技术团队</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017 
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script src="/assets/highlight.pack.js?rev=@@hash"></script>
+  <script>
+    hljs.initHighlightingOnLoad(); //初始化代码高亮 
+  </script>
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
